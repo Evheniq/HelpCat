@@ -1,5 +1,5 @@
 # HelpCat
-Service to relax at the right time
+Service to relax at the right time  
 You can see the project <a href="https://cat2help.herokuapp.com/" target="_blank">here</a>
 
 ## Stack
