@@ -1,0 +1,32 @@
+body{
+    font-family: sans-serif;
+}
+
+.content{
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 12vh;
+}
+
+.title{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.main-mem img{
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 50vh;
+}
+
+.next{
+    margin-top: 40px;
+}
+
+.next .btn{
+    color: white;
+}
+
+.next .btn:hover{
+    color: black;
+}
