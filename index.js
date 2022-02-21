@@ -26,12 +26,14 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/:idCat', async (req, res) => {
-    await findUrlCat(req.params.idCat).then(catObj => {
-        res.render('index', {countVisits: 12, catImg: catObj})
-    }).catch(e => {
-        console.error(e)
-        res.redirect('/')
-    })
+    // await findUrlCat(req.params.idCat).then(catObj => {
+    //     res.render('index', {countVisits: 12, catImg: catObj})
+    // }).catch(e => {
+    //     console.error(e)
+    //     res.redirect('/')
+    // })
+
+    console.log(req.params)
 })
 
 
