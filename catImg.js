@@ -1,7 +1,7 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const catImg = new mongoose.Schema({
     url: {type: String, required: true}
 })
 
-export default mongoose.model('catImg', catImg)
+module.exports = mongoose.model('catUrls', catImg)

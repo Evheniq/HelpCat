@@ -2,4 +2,4 @@ function getRandomArbitrary(min, max) {
     return Math.trunc(Math.random() * (max - min) + min);
 }
 
-export { getRandomArbitrary }
+module.exports = getRandomArbitrary

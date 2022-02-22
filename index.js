@@ -1,56 +1,45 @@
-import express from 'express'
-import path from 'path'
-// import {findUrlCat, addUrlCat} from './db_access.js'
-import mongoose from 'mongoose'
-import catImg from './catImg.js'
-import {getRandomArbitrary} from './utils.js'
+const express = require('express'),
+    app = express(),
+    mongoose = require('mongoose'),
+    router = require('./router.js'),
+    cookieParser = require('cookie-parser')
 
-// const cookieParser = require('cookie-parser')
 
-const __dirname = path.resolve()
 const PORT = process.env.PORT ?? 3000
-const app = express()
-const strConnect = process.env.CONNECT_STR || 'mongodb+srv://root:FrgHRdkr8AIcou36@cluster0.jxfta.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const strConnect = process.env.CONNECT_STR
 
 
 app.set('view engine', 'ejs')
-app.set('views', path.resolve(__dirname, 'static'))
+// app.set('views', path.resolve(__dirname, './static'))
+
 
 app.use(express.static('static'))
 app.use(express.json())
-
-app.get('/', async (req, res) => {
-    await findUrlCat().then(catArray => {
-        res.redirect(`/${getRandomArbitrary(0, catArray.length)}`)
-    })
+app.use(cookieParser('sdfsdf235423sa'))
+app.use((req, res, next) => {
+    if(req.query.idCat){
+        const visits = req.cookies.visits || 0
+        console.log(visits)
+        res.cookie('visits', parseInt(visits) + 1)
+    }
+    next()
 })
-
-app.get('/:idCat', async (req, res) => {
-    // await findUrlCat(req.params.idCat).then(catObj => {
-    //     res.render('index', {countVisits: 12, catImg: catObj})
-    // }).catch(e => {
-    //     console.error(e)
-    //     res.redirect('/')
-    // })
-
-    console.log(req.params)
-})
-
-
-app.post('/addCat', async (req, res) => {
-    const {url} = req.body
-
-})
+app.use('/', router)
 
 
 async function startApp() {
     try {
         await mongoose.connect(strConnect)
         app.listen(PORT, () => {
-            console.log(`Server start at port: ${PORT}...`)
+            console.log(`At port: ${PORT}...`)
         })
     } catch (e) {
         console.error(e)
     } 
 }
 
+startApp().then(() => {
+    console.log('Server start')
+}).catch((e) => {
+    console.log(e)
+})

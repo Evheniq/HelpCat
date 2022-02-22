@@ -5,7 +5,11 @@ body{
 .content{
     min-height: 100vh;
     text-align: center;
-    padding-top: 12vh;
+    /*padding-top: 3vh;*/
+}
+
+.logo img{
+    width: 150px;
 }
 
 .title{
